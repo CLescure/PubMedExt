@@ -2,7 +2,7 @@
 
 In many cases, **information retrieval** is a laborious and repetitive task. Hence,
 developping a robust automatization of such a process is a good investment both
-in terms of time and performance.
+in terms of time and accuracy.
 
 This case study focuses on scraping [PubMed](https://pubmed.ncbi.nlm.nih.gov/),
 the leading search engine for bibliographic data in biology and medicine, to find
@@ -45,9 +45,9 @@ A few improvements could be added to this short-term solution:
 ## Medium-term
 
 Since this tool is not an end in itself, but is meant to be used in other projects, the
-medium-term solution would be to encapsulate it in an **API**.
+medium-term solution would be to encapsulate it in a **Python package**.
 
-In terms of improving its performance, it would be interesting to assign a **score** to each gene
+In terms of improving its accuracy it would be interesting to assign a **score** to each gene
 and cancer type (especially genes): instead of just counting their occurences, we could
 assign them a high score when they appear close to the query gene in a given abstract, and
 a lower one when they appear far from it. The score metric has to be tuned in order to
@@ -55,14 +55,16 @@ balance it for genes that appear in many abstracts, but far from the query, and 
 appear in few abstracts, but close to the query.
 
 It will also be necessary to check if PubMed has some kind of **anti-spam firewall** that might
-prevent us from using PyMed too much.
+prevent us from using PyMed too much. In any case, it could also be interesting to adapt the code so
+that it supports queries with several genes (or at least one gene with its aliases) and returns an
+aggregated dictionary of associated genes and cancer types.
 
 ## Long-term
 
-In the long-term, it could be interesting to test how **Machine and Deep Learning** techniques
+In the long-term, it could be interesting to test how **Machine and Deep Learning** techniques such as BERT
 perform for our task. Recurrent Neural Networks and Attention Networks are especially popular
 for NLP tasks, and could for example check whether a gene mentioned in an abstract is associated
 to the query in a deeper way than just a co-occurence.
 
-**Word embedding** techniques could also be interesting to use to embed genes and find actual relations
-and clusters that relate them.
+**Word embedding** techniques such as GloVe or word2vec could also be interesting to use to embed genes and
+find actual relations and clusters that relate them.
